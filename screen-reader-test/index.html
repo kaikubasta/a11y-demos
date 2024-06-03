@@ -26,16 +26,6 @@
 				grid-template-columns: 1fr 1fr;
 				position: relative;
 			}
-
-			main::before {
-				content: '';
-				display: block;
-				height: 100%;
-				position: absolute;
-				top: 0;
-				left: 50%;
-				border-left: 3px dashed #fcc;
-			}
 		}
 
 		a {
@@ -58,6 +48,14 @@
 		section {
 			background-color: #eee;
 			padding: 1rem;
+		}
+
+		#good {
+			border: 4px solid #cfc;
+		}
+
+		#bad {
+			border: 4px solid #fcc;
 		}
 
 		:is(h2, .h2, h3, .h3, p, .p, details, .details) {
