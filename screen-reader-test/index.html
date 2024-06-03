@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Screen Reader Test</title>
+
+	<style>
+		html {
+			font-size: 62.5%;
+		}
+
+		body {
+			font: 1.6rem/1.5 sans-serif;
+			padding: 2rem;
+			margin: 0 auto;
+		}
+
+		main {
+			display: grid;
+			grid-gap: 2rem;
+		}
+
+		@media (min-width: 769px) {
+			main {
+				grid-template-columns: 1fr 1fr;
+				position: relative;
+			}
+
+			main::before {
+				content: '';
+				display: block;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 50%;
+				border-left: 3px dashed #fcc;
+			}
+		}
+
+		a {
+			color: #00f;
+		}
+
+		a svg {
+			margin-inline-start: 0.25em;
+		}
+
+		hr {
+			margin-block: 2rem;
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+
+		section {
+			background-color: #eee;
+			padding: 1rem;
+		}
+
+		:is(h2, .h2, h3, .h3, p, .p, details, .details) {
+			margin-block: 1em;
+		}
+
+		:is(h2, .h2) {
+			font-size: 2rem;
+			font-weight: bold;
+		}
+
+		:is(h3, .h3) {
+			font-size: 1.25em;
+			font-weight: bold;
+		}
+
+		:is(summary, .summary) {
+			font-weight: bold;
+			cursor: pointer;
+		}
+
+		label {
+			font-weight: bold;
+		}
+
+		label small,
+		label + small {
+			color: #666;
+			font-weight: normal;
+		}
+
+		input {
+			font-size: 1.6rem;
+			display: block;
+			padding: 1rem;
+		}
+	</style>
+</head>
+<body>
+
+	<header>
+		<h1>Screen Reader Test</h1>
+	</header>
+
+	<main>
+		<section id="bad">
+			<div class="h2">Bad Example</div>
+
+			<hr>
+
+			<div class="h3">Another headline</div>
+			<div class="p">This is just an example paragraph. Did you head about <a href="https://example.com" target="_blank">this page</a>?</div>
+
+			<hr>
+
+			<img src="image.jpg" width="800" height="422" loading="lazy">
+
+			<hr>
+
+			<div class="details">
+				<div class="summary" tabindex="0">Reveal hidden text</div>
+
+				<div class="p" hidden>It's me! I'm the hidden text!</div>
+			</div>
+
+			<hr>
+
+			<form>
+				<label>Email address</label> <small>(required)</small>
+				<input type="text" placeholder="name@example.com">
+			</form>
+		</section>
+
+		<section id="good">
+			<h2>Good Example</h2>
+
+			<hr>
+
+			<h3>Another headline</h3>
+			<p>This is just an example paragraph. Did you head about <a href="https://example.com" target="_blank" title="opens in a new tab">this page<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"><path fill="currentColor" d="M13.444.667a1.05 1.05 0 0 0 .223 1.155l1.502 1.504-3.747 3.752a1.062 1.062 0 0 0 1.5 1.5l3.758-3.756 1.502 1.502a1.049 1.049 0 0 0 1.156.223A1.065 1.065 0 0 0 20 5.574V1.067A1.071 1.071 0 0 0 18.933 0h-4.507a1.064 1.064 0 0 0-.982.667Z"/><path fill="currentColor" d="M15.556 12.222v5.556A2.23 2.23 0 0 1 13.333 20H2.223A2.229 2.229 0 0 1 0 17.778V6.667a2.229 2.229 0 0 1 2.222-2.223h5.556a1.111 1.111 0 1 1 0 2.223H2.222v11.11h11.111v-5.555a1.11 1.11 0 1 1 2.223 0Z"/></svg></a>?</p>
+
+			<hr>
+
+			<img src="image.jpg" width="800" height="422" loading="lazy" alt="Photo of a green landscape with trees and blue sky">
+
+			<hr>
+
+			<details>
+				<summary>Reveal hidden text</summary>
+
+				<p>It's me! I'm the hidden text!</p>
+			</details>
+
+			<hr>
+
+			<form>
+				<label for="input">Email address <small>(required)</small></label>
+				<input type="email" id="input" placeholder="name@example.com" required="true">
+			</form>
+		</section>		
+	</main>
+
+	<script>
+		document.querySelector('.summary').addEventListener('click', () => {
+			document.querySelector('.details .p').toggleAttribute('hidden');
+		});
+	</script>
+
+</body>
+</html>
